@@ -13,3 +13,19 @@ Some ground rules:
     - all events can be unbound
 
 implementation strategy: 
+- how do you want to implement this? (remember step at a time)
+  - first -> i want to implement a grid to the container
+    - the grid will have div's (for the x/o's)
+    - the grid will have a nested flex to justify and align children
+    - the grid will have a gap of some kind to distinguish tiles
+  - second -> i want to add a board
+    - the board should allow the player to choose if there going against a player or computer (not functional)
+    - should display which 
+
+extra questions: 
+  - how will you layout the grid?
+    - i could directly insert it into html (not picked)
+    - i could insert it threw javascript (picked)
+  - should the player be able to decide if there noughts or crosses?
+    - decision: no;
+  

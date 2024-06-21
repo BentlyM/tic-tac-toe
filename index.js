@@ -4,7 +4,8 @@ const gameFlow = {};
 
 const onTileClick = (container) => {
     container.addEventListener('click',(event) => {
-       
+        if(event.target === container) return;
+        
     });
 }
 

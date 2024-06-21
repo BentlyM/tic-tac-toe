@@ -20,7 +20,10 @@ implementation strategy:
     - the grid will have a gap of some kind to distinguish tiles
   - second -> i want to add a board
     - the board should allow the player to choose if there going against a player or computer (not functional)
-    - should display which 
+    - should display score (if rounds)
+    - should include a play again button 
+    - should display winner
+  - third -> 
 
 extra questions: 
   - how will you layout the grid?

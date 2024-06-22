@@ -25,6 +25,22 @@ implementation strategy:
     - should display winner
   - third -> what i want to happen when a tile is clicked
     - when a tile is clicked i want it to display players x/o 
+    - prevent player from choosing same tile
+    - once tile is clicked check for winner if not opponent turn
+    - if player has chosen a tile toggle turn
+  - fourth -> i want a algorithm to check for winner
+    - what are some possible methods?
+      - we are gonna have to use the "elements" variable so the container node has array behavior
+      - First Method: A BUNCH OF IF STATEMENTS LOL
+        -  if rows are all equal return a winner
+        -  if columns are equal return a winner
+        -  if diagonals are equal return a winner
+      - Second Method: predetermined winning combinations
+        - create an array with the winning combos
+        - check to make sure  all sub-array elements concatenated into it recursively up to the specified depth.
+        - 
+
+
 
 extra questions: 
   - how will you layout the grid?
@@ -32,4 +48,13 @@ extra questions:
     - i could insert it threw javascript (picked)
   - should the player be able to decide if there noughts or crosses?
     - decision: no;
+
+ possible issues:
+  - there might be a issue when you with the turn logic
+    - how is it making its decision?
+      - checking if the parent nodes text content is empty but after the first text content is changed its never empty how will it switch back to the opponent
+  - flatBoard issue how do i know which array to pass threw flat?
+    - is it the container passed as an array object?
+    - is it the available squares?
+    - what am i talking about here?
   

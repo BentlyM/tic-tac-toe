@@ -23,7 +23,8 @@ implementation strategy:
     - should display score (if rounds)
     - should include a play again button 
     - should display winner
-  - third -> 
+  - third -> what i want to happen when a tile is clicked
+    - when a tile is clicked i want it to display players x/o 
 
 extra questions: 
   - how will you layout the grid?

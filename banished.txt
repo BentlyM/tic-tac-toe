@@ -1,0 +1,10 @@
+const squareIndex = Array.prototype.indexOf.call(container.children, event.target);
+                if(availableSquares[squareIndex] === ""){
+                    availableSquares[squareIndex] = player.marker;
+                    event.target.textContent = player.marker;
+}
+
+
+if(event.target === container) throw `${event.target} === ${container}`;
+
+// Array.prototype.indexOf.call(availableSquares , event.target);

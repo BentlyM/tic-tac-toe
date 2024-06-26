@@ -7,10 +7,12 @@ Some ground rules:
   - DRY code: Don't repeat Yourself
   - KISS: Keep it Simple Stupid
   - YAGNI: You Ain't Gonna Need It (don't over engineer)
+  - NDN : no deep nesting (I CANT HELP IT)
   3. effect DOM/variable/property usage
     - if it looks reusable REUSE IT. (do not just create another call)
   4. no memory leaks
     - all events can be unbound
+  5. allow ur code to work first you can always improve it later it is not over till you push it
 
 implementation strategy: 
 - how do you want to implement this? (remember step at a time)
@@ -50,7 +52,8 @@ extra questions:
     - i could directly insert it into html (not picked)
     - i could insert it threw javascript (picked)
   - should the player be able to decide if there noughts or crosses?
-    - decision: no;
+    - decision: maybe
+  - what do i want it to do? 
 
  possible issues:
   - there might be a issue when you with the turn logic
@@ -60,4 +63,5 @@ extra questions:
     - is it the container passed as an array object?
     - is it the available squares?
     - what am i talking about here?
+    - 
   

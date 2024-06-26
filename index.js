@@ -1,4 +1,4 @@
-const GameBoard = (() => {
+const runGameBoard = (() => {
 
     let winningCombinations = [
         ['0','1','2'], // row
@@ -17,88 +17,101 @@ const GameBoard = (() => {
         "", "", ""
     ];
 
-    const player = {
-        name : '',
-        marker : 'x',
-        turn: true
-    }
-    const opponent = {
-        name : '',
-        marker: 'o',
-        turn: false
-    }
-
     const container = document.querySelector('.container');
 
-const gameBoard = {
+    const gameBoard = {
         init: function() {
             this.createTiles();
             this.addEventListeners();
+            this.players = this.createCompetition();
+            this.currentTurn = this.players.player;
         },
-        createTiles: function(){
-            for(let i = 0; i < availableSquares.length; i++){
+
+        user: function(competitor, name, marker){
+            let isTurn = true;
+
+            return {
+                competitor,
+                name,
+                marker,
+
+                isTurn: function() {
+                    return isTurn;
+                },
+
+                toggleTurn: function() {
+                    isTurn = !isTurn;
+                }
+            }
+        },
+
+        createCompetition: function() {
+            const player = this.user('player', 'john', 'x');
+            const bot = this.user('bot', 'bot', 'o');
+            return { player, bot };
+        },
+
+        createTiles: function() {
+            for (let i = 0; i < availableSquares.length; i++) {
                 const tile = document.createElement('div');
                 tile.classList.add('tiles');
                 tile.id = i;
                 container.appendChild(tile);
             }
         },
-        addEventListeners: function(){
-            container.addEventListener('click',(event)=>{
-                if(event.target === container) throw `${event.target} === ${container}`;
+
+        addEventListeners: function() {
+            container.addEventListener('click', (event) => {
+                if (event.target === container) return;
                 const clickedTile = event.target.closest('.tiles');
 
                 this.updateSquare(clickedTile);
-                console.table(availableSquares); // you literally did it here bro -- .flat();
-            })
+            });
         },
-        updateSquare: function(currentTile){
 
-            const squareIndex = Array.prototype.indexOf.call(container.children , currentTile);
-            console.log(squareIndex);
-            const elements = Array.from(document.querySelectorAll('.container'))
+        updateSquare: function(currentTile) {
+            const squareIndex = Array.prototype.indexOf.call(container.children, currentTile);
 
-            if(availableSquares[squareIndex] === ''){
+            if (availableSquares[squareIndex] === '') {
+                availableSquares[squareIndex] = this.currentTurn.marker;
+                currentTile.textContent = availableSquares[squareIndex];
 
-                availableSquares[squareIndex] = player.marker;
-                currentTile.textContent = player.marker;
-
-                if(elements.every((element) => element.innerHTML === '')){
-                    console.log('all arrays are empty');
-                }else{
-                    console.log('not all arrays are empty');
-                    // if not empty we are gonna check if the player has won if not then toggle 
-                    this.checkWin(); // check if winner
-                    // prob gonna have to put the bot function here
+                if (this.currentTurn === this.players.player) {
+                    this.currentTurn = this.players.bot;
+                } else {
+                    this.currentTurn = this.players.player;
                 }
-            }else{
-                alert('you already picked that bitch.');
+
+                this.checkWin();
+            } else {
+                alert('You already picked that!');
                 return null;
             }
         },
-        checkWin : function(){
+
+        checkWin: function() {
             const board = availableSquares.slice();
 
-            for(const combination of winningCombinations){
-                if(this.checkCombination(combination, board)){
-                    console.log('Winner');
+            for (const combination of winningCombinations) {
+                if (this.checkCombination(combination, board)) {
+                    alert(`${board[combination[0]]} is the Winner!`);
                     return 'Winner';
                 }
             }
 
-            if(board.every(cell => cell !== '')){
+            if (board.every(cell => cell !== '')) {
+                alert('It\'s a Draw!');
                 return 'Draw';
             }
 
             return null;
         },
 
-        checkCombination: function(combination , board){
-            const [a , b , c] = combination;
-            console.log(`${a} , ${b} , ${c}`);
+        checkCombination: function(combination, board) {
+            const [a, b, c] = combination;
             return board[a] && board[a] === board[b] && board[a] === board[c];
         }
-
     }
+
     gameBoard.init();
 })();

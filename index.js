@@ -64,7 +64,7 @@ const runGameBoard = (() => {
             container.addEventListener('click', (event) => {
                 if (event.target === container) return;
                 const clickedTile = event.target.closest('.tiles');
-
+                 
                 this.updateSquare(clickedTile);
             });
         },

@@ -1,4 +1,4 @@
-const GameBoard = (function(){
+const GameBoard = (() => {
 
     let winningCombinations = [
         ['0','1','2'], // row
@@ -55,6 +55,7 @@ const gameBoard = {
         updateSquare: function(currentTile){
 
             const squareIndex = Array.prototype.indexOf.call(container.children , currentTile);
+            console.log(squareIndex);
             const elements = Array.from(document.querySelectorAll('.container'))
 
             if(availableSquares[squareIndex] === ''){
@@ -75,26 +76,29 @@ const gameBoard = {
                 return null;
             }
         },
+        checkWin : function(){
+            const board = availableSquares.slice();
 
-        checkWin: function(){
-            const flatBoard = availableSquares.flat(); // depth of squares
-            
             for(const combination of winningCombinations){
-                const [a , b , c] = combination;
-
-                if(flatBoard[a] && flatBoard[a] === flatBoard[b] && flatBoard[a] === flatBoard[c]){
-                    console.log('winner'); // i might have to do this a lot more times
-                    return flatBoard[a];
+                if(this.checkCombination(combination, board)){
+                    console.log('Winner');
+                    return 'Winner';
                 }
-
-                if(flatBoard.every(cell => cell !== '')){
-                    console.log('draw');
-                    return 'Draw';
-                }
-
-                return null; // on going
             }
+
+            if(board.every(cell => cell !== '')){
+                return 'Draw';
+            }
+
+            return null;
+        },
+
+        checkCombination: function(combination , board){
+            const [a , b , c] = combination;
+            console.log(`${a} , ${b} , ${c}`);
+            return board[a] && board[a] === board[b] && board[a] === board[c];
         }
+
     }
     gameBoard.init();
 })();

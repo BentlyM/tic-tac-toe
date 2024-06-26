@@ -3,7 +3,7 @@ Some ground rules:
     - everything to do with my module is in my module
     - little to no global variables
     - if a module manages more than one thing it should be split up to another method/function (single responsibility)
-  2. separation of concerns
+  2. separation of concerns (PLEASE DO THIS)
   - DRY code: Don't repeat Yourself
   - KISS: Keep it Simple Stupid
   - YAGNI: You Ain't Gonna Need It (don't over engineer)
@@ -37,8 +37,11 @@ implementation strategy:
         -  if diagonals are equal return a winner
       - Second Method: predetermined winning combinations
         - create an array with the winning combos
+        option-1:
         - check to make sure  all sub-array elements concatenated into it recursively up to the specified depth.
-        - 
+        option-2:
+        - slice with empty para and use a new array to prevent mutation from initial array
+      - Third Method:  
 
 
 
